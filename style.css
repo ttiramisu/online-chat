@@ -43,7 +43,7 @@ section {
 
 .message>span {
   display: inline-block;
-  max-width: 250px;
+  max-width: 295px;
   word-wrap: break-word;
 }
 
