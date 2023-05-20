@@ -37,6 +37,17 @@ sendButton.addEventListener('click', () => {
   }
 });
 
+// Add event listener to send button
+sendButton.addEventListener('click', sendMessage);
+
+// Add event listener to message input for Enter key press
+messageInput.addEventListener('keypress', (event) => {
+  if (event.keyCode === 13) {
+    event.preventDefault(); // Prevent the default form submission behavior
+    sendMessage();
+  }
+});
+
 // Display a message in the chat window
 function displayMessage(message) {
   const { text } = message;
