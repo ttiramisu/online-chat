@@ -30,12 +30,16 @@ function sendMessage() {
   const messageText = messageInput.value.trim();
   if (messageText !== '') {
     const userEmail = localStorage.getItem('userEmail'); // Retrieve user's email from local storage
-    const newMessageRef = messagesRef.push();
-    newMessageRef.set({
+    db.collection('messages').add({
       text: messageText,
       email: userEmail // Add user's email to the message
+    })
+    .then(() => {
+      messageInput.value = '';
+    })
+    .catch((error) => {
+      console.error('Error sending message: ', error);
     });
-    messageInput.value = '';
   }
 }
 
