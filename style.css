@@ -1,3 +1,7 @@
+* {
+  font-family: sans-serif;
+}
+
 section {
   margin-top: 5rem;
 }
@@ -18,7 +22,7 @@ section {
   border: 1px solid black;
   padding: 1rem 2rem;
   border-radius: 8px;
-  height: 300px;
+  height: 250px;
 }
 
 .input {
@@ -39,6 +43,11 @@ section {
 .msg-container {
   margin-bottom: 2rem;
   width: 320px;
+}
+
+button {
+  background-color: #0ca678;
+  color: white;
 }
 
 input {

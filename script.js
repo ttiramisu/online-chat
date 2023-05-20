@@ -41,8 +41,8 @@ sendButton.addEventListener('click', () => {
 sendButton.addEventListener('click', sendMessage);
 
 // Add event listener to message input for Enter key press
-messageInput.addEventListener('keypress', (event) => {
-  if (event.keyCode === 13) {
+messageInput.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
     event.preventDefault(); // Prevent the default form submission behavior
     sendMessage();
   }
