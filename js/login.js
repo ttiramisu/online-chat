@@ -39,7 +39,7 @@ const sendEmailVerification = (user) => {
     .then(() => {
       // Email verification sent!
       alert('An email verification link has been sent to your email address. Please verify your email before logging in.');
-      // You can choose to redirect the user to a different page or show a login form after successful registration and email verification
+      window.location.assign('index.html')
     })
     .catch((error) => {
       alert(error.message);
