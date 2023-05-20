@@ -77,9 +77,10 @@ function hideEmail(email) {
   const username = email.slice(0, atIndex);
   const domain = email.slice(atIndex);
 
-  const hiddenUsername = username.slice(0, -4) + '*'.repeat(4); // Hide last 4 characters before "@"
-  
-  const hiddenEmail = hiddenUsername + domain;
+  const hiddenUsername = '*'.repeat(username.length - 4) + username.slice(-4);
+  const hiddenDomain = domain.slice(0, 4) + '*'.repeat(domain.length - 4);
+
+  const hiddenEmail = hiddenUsername + hiddenDomain;
   return hiddenEmail;
 }
 
