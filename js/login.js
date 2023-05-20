@@ -23,8 +23,12 @@ const register = () => {
   auth.createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      sendEmailVerification(user);
-      window.location.assign('https://fire-chatty.vercel.app/');
+      if (user) {
+        sendEmailVerification(user);
+        window.location.assign('https://fire-chatty.vercel.app/');
+      } else {
+        alert('User registration failed.');
+      }
     })
     .catch((error) => {
       alert(error.message);
@@ -49,10 +53,12 @@ const login = () => {
   auth.signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      if (user.emailVerified) {
+      if (user && user.emailVerified) {
         window.location.assign('https://fire-chatty.vercel.app/');
-      } else {
+      } else if (user) {
         alert('Please verify your email before logging in.');
+      } else {
+        alert('Login failed. Invalid credentials.');
       }
     })
     .catch((error) => {
