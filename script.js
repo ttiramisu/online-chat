@@ -6,7 +6,7 @@ const firebaseConfig = {
   storageBucket: "chat-test-88207.appspot.com",
   messagingSenderId: "475093710040",
   appId: "1:475093710040:web:13a5dcf2b0b8aae81d53ad"
-;
+};
 
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
@@ -26,7 +26,7 @@ const messageInput = document.getElementById('messageInput');
 const sendButton = document.getElementById('sendButton');
 
 // Send a message
-sendButton.addEventListener('click', () => {
+function sendMessage() {
   const messageText = messageInput.value.trim();
   if (messageText !== '') {
     const newMessageRef = messagesRef.push();
@@ -35,7 +35,7 @@ sendButton.addEventListener('click', () => {
     });
     messageInput.value = '';
   }
-});
+}
 
 // Add event listener to send button
 sendButton.addEventListener('click', sendMessage);
