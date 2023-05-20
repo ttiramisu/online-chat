@@ -27,7 +27,7 @@ section {
   border: 1px solid black;
   padding: 1rem 2rem;
   border-radius: 8px;
-  max-height: 385px;
+  height: 60vh;
 }
 
 .input {
@@ -45,7 +45,7 @@ section {
 }
 
 #messages {
-  max-height: 225px;
+  max-height: 45vh;
   overflow-y: auto;
 }
 
