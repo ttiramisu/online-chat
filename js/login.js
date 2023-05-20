@@ -66,7 +66,6 @@ const login = () => {
     });
 };
 
-
 const resetPwd = () => {
   const email = document.getElementById('email').value;
   // let emailResetText = document.getElementById('pwdresetemailtext')
