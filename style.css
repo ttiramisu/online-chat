@@ -25,12 +25,11 @@ section {
   border-top: 1px solid black;
   width: 320px;
   padding-top: 1.5rem;
-  align-self: stretch !important;
 }
 
 #messages {
   max-height: 300px;
-  overflow-y: auto;
+  overflow-y: scroll;
 }
 
 #messages>div {
@@ -38,7 +37,6 @@ section {
 }
 
 .msg-container {
-  align-self: stretch;
   margin-bottom: 2rem;
   width: 320px;
 }
