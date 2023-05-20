@@ -54,7 +54,7 @@ const login = () => {
     .then((userCredential) => {
       const user = userCredential.user;
       if (user && user.emailVerified) {
-        window.location.assign('https://fire-chatty.vercel.app/');
+        window.location.assign('chat.html');
       } else if (user) {
         alert('Please verify your email before logging in.');
       } else {
