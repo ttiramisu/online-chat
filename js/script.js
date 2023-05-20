@@ -74,15 +74,11 @@ function displayMessage(message) {
 // Function to hide parts of the email
 function hideEmail(email) {
   const atIndex = email.indexOf('@');
-  const username = email.slice(0, atIndex);
-  const domain = email.slice(atIndex);
+  const hiddenEmail = email.slice(0, atIndex);
 
-  const hiddenUsername = '*'.repeat(username.length - 4) + username.slice(-4);
-  const hiddenDomain = domain.slice(0, 4) + '*'.repeat(domain.length - 4);
-
-  const hiddenEmail = hiddenUsername + hiddenDomain;
   return hiddenEmail;
 }
+
 
 firebase.auth().onAuthStateChanged(function (user) {
   if (!user) {
