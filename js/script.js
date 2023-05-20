@@ -64,3 +64,9 @@ function displayMessage(message) {
   // Scroll to the bottom of the messages container
   messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
+
+firebase.auth().onAuthStateChanged(function (user) {
+  if (!user) {
+    window.location.replace('index.html');
+  }
+});
