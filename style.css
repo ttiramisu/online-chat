@@ -1,0 +1,52 @@
+section {
+  margin-top: 5rem;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.column {
+  flex-direction: column;
+  width: 20rem;
+  height: 300px;
+}
+
+.border {
+  border: 1px solid black;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  height: 300px;
+}
+
+.input {
+  border-top: 1px solid black;
+  width: 320px;
+  padding-top: 1.5rem;
+  align-self: stretch !important;
+}
+
+#messages {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+#messages>div {
+  margin-bottom: 0.2rem;
+}
+
+.msg-container {
+  align-self: stretch;
+  margin-bottom: 2rem;
+  width: 320px;
+}
+
+input {
+  width: 14rem;
+}
+
+button {
+  width: 4.5rem !important;
+}
