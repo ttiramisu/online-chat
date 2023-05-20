@@ -41,6 +41,13 @@ section {
   margin-bottom: 0.2rem;
 }
 
+.message>span {
+  display: inline-block;
+  max-width: 250px;
+  word-wrap: break-word;
+}
+
+
 .msg-container {
   margin-bottom: 2rem;
   width: 320px;
@@ -49,7 +56,6 @@ section {
 button {
   background-color: #0ca678;
   color: white;
-  border-radius: 3px;
 }
 
 input {

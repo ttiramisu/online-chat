@@ -52,6 +52,15 @@ messageInput.addEventListener('keydown', (event) => {
 function displayMessage(message) {
   const { text } = message;
   const messageElement = document.createElement('div');
-  messageElement.textContent = text;
-  document.getElementById('messages').appendChild(messageElement);
+  messageElement.classList.add('message');
+
+  const contentElement = document.createElement('span');
+  contentElement.textContent = text;
+  messageElement.appendChild(contentElement);
+
+  const messagesContainer = document.getElementById('messages');
+  messagesContainer.appendChild(messageElement);
+
+  // Scroll to the bottom of the messages container
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
