@@ -36,14 +36,18 @@ const register = () => {
 };
 
 const sendEmailVerification = (user) => {
-  user.sendEmailVerification()
-    .then(() => {
-      // Email verification sent!
-      alert(`An email verification link has been sent to ${user.email}`);
-    })
-    .catch((error) => {
-      alert(error.message);
-    });
+  if (user && user.sendEmailVerification) {
+    user.sendEmailVerification()
+      .then(() => {
+        // Email verification sent!
+        alert(`An email verification link has been sent to ${user.email}`);
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  } else {
+    alert('Email verification is not supported.');
+  }
 };
 
 const login = () => {
