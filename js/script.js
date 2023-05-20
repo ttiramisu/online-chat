@@ -57,7 +57,7 @@ function displayMessage(message) {
   messageElement.classList.add('message');
 
   const contentElement = document.createElement('span');
-  contentElement.textContent = message.email + ': ' + '<br>' + text;
+  contentElement.textContent = message.email + ': ' + text;
   messageElement.appendChild(contentElement);
 
   const messagesContainer = document.getElementById('messages');
