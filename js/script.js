@@ -29,9 +29,11 @@ const sendButton = document.getElementById('sendButton');
 function sendMessage() {
   const messageText = messageInput.value.trim();
   if (messageText !== '') {
+    const userEmail = localStorage.getItem('userEmail'); // Retrieve user's email from local storage
     const newMessageRef = messagesRef.push();
     newMessageRef.set({
-      text: messageText
+      text: messageText,
+      email: userEmail // Add user's email to the message
     });
     messageInput.value = '';
   }

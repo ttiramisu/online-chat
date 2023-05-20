@@ -1,8 +1,9 @@
+firebase.initializeApp(firebaseApp);
+
 firebase.auth().onAuthStateChanged(function (user) {
-  if (user) {
-    
+  if (!user) {
+    window.location.replace('login.html');
   } else {
-    // User is not signed in, redirect to the login page
-    window.location.replace('index.html');
+    localStorage.setItem('userEmail', user.email);
   }
 });
