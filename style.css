@@ -33,7 +33,7 @@ section {
 }
 
 .message:nth-child(even) {
-  background-color: #f1f3f5;
+  background-color: #f8f9fa;
 }
 
 .message:nth-child(odd) {
