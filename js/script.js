@@ -1,6 +1,3 @@
-// Retrieve user email from local storage
-const userEmail = localStorage.getItem('userEmail');
-
 const firebaseConfig = {
   apiKey: "AIzaSyCc1RCwcQLgHCIbdAYQw-iyD9oRm0TfknM",
   authDomain: "chat-test-88207.firebaseapp.com",
@@ -32,9 +29,11 @@ const sendButton = document.getElementById('sendButton');
 function sendMessage() {
   const messageText = messageInput.value.trim();
   if (messageText !== '') {
+    const userEmail = localStorage.getItem('userEmail'); // Retrieve user's email from local storage
     const newMessageRef = messagesRef.push();
     newMessageRef.set({
-      text: messageText
+      text: messageText,
+      email: userEmail
     });
     messageInput.value = '';
   }
@@ -58,7 +57,7 @@ function displayMessage(message) {
   messageElement.classList.add('message');
 
   const contentElement = document.createElement('span');
-  contentElement.textContent = text;
+  contentElement.textContent = message.email + ': ' + '<br>' + text;
   messageElement.appendChild(contentElement);
 
   const messagesContainer = document.getElementById('messages');
