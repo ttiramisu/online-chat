@@ -25,7 +25,6 @@ const register = () => {
       const user = userCredential.user;
       if (user) {
         sendEmailVerification(user);
-        window.location.assign('https://fire-chatty.vercel.app/');
       } else {
         alert('User registration failed.');
       }
@@ -36,18 +35,15 @@ const register = () => {
 };
 
 const sendEmailVerification = (user) => {
-  if (user && user.sendEmailVerification) {
-    user.sendEmailVerification()
-      .then(() => {
-        // Email verification sent!
-        alert(`An email verification link has been sent to ${user.email}`);
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
-  } else {
-    alert('Email verification is not supported.');
-  }
+  user.sendEmailVerification()
+    .then(() => {
+      // Email verification sent!
+      alert('An email verification link has been sent to your email address.');
+      window.location.assign('https://fire-chatty.vercel.app/');
+    })
+    .catch((error) => {
+      alert(error.message);
+    });
 };
 
 const login = () => {
@@ -69,6 +65,7 @@ const login = () => {
       alert(error.message);
     });
 };
+
 
 const resetPwd = () => {
   const email = document.getElementById('email').value;
