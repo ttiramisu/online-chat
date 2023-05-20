@@ -32,7 +32,6 @@ const sendEmailVerification = () => {
   }
 };
 
-
 const register = () => {
   const email = document.getElementById('email').value;
   const password = document.getElementById('pword').value;
@@ -44,7 +43,6 @@ const register = () => {
       alert(err);
     });
 };
-
 
 const login = () => {
   const email = document.getElementById('email').value;
