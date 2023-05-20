@@ -55,12 +55,13 @@ messageInput.addEventListener('keydown', (event) => {
 
 // Display a message in the chat window
 function displayMessage(message) {
-  const { text } = message;
+  const { text, email } = message;
+  const hiddenEmail = hideEmail(email); // Manipulate email string to hide certain parts
   const messageElement = document.createElement('div');
   messageElement.classList.add('message');
 
   const contentElement = document.createElement('span');
-  contentElement.textContent = message.email + ': ' + text;
+  contentElement.textContent = hiddenEmail + ': ' + text;
   messageElement.appendChild(contentElement);
 
   const messagesContainer = document.getElementById('messages');
@@ -68,6 +69,19 @@ function displayMessage(message) {
 
   // Scroll to the bottom of the messages container
   messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
+// Function to hide parts of the email
+function hideEmail(email) {
+  const parts = email.split('@');
+  const username = parts[0];
+  const domain = parts[1];
+
+  const hiddenUsername = '*'.repeat(username.length - 4) + username.slice(-4);
+  const hiddenDomain = domain.slice(0, 4) + '*'.repeat(domain.length - 4);
+
+  const hiddenEmail = hiddenUsername + '@' + hiddenDomain;
+  return hiddenEmail;
 }
 
 firebase.auth().onAuthStateChanged(function (user) {
