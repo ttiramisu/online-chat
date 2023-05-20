@@ -4,7 +4,7 @@
 }
 
 section {
-  margin-top: 5rem;
+  margin-top: 2rem;
 }
 
 .flex {
@@ -27,7 +27,7 @@ section {
   border: 1px solid black;
   padding: 1rem 2rem;
   border-radius: 8px;
-  height: 60vh;
+  height: 70vh;
 }
 
 .input {
