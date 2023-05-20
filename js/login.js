@@ -49,12 +49,12 @@ const sendEmailVerification = (user) => {
 const login = () => {
   const email = document.getElementById('email').value;
   const password = document.getElementById('pword').value;
+  localStorage.setItem('userEmail', email);
 
   auth.signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
       if (user && user.emailVerified) {
-        localStorage.setItem('userEmail', user.email);
         window.location.assign('chat.html');
       } else if (user) {
         alert('Please verify your email before logging in.');
