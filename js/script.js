@@ -34,8 +34,7 @@ function sendMessage() {
   if (messageText !== '') {
     const newMessageRef = messagesRef.push();
     newMessageRef.set({
-      text: messageText,
-      email: userEmail
+      text: messageText
     });
     messageInput.value = '';
   }
@@ -59,7 +58,7 @@ function displayMessage(message) {
   messageElement.classList.add('message');
 
   const contentElement = document.createElement('span');
-  contentElement.textContent = email + ': ' + '<br>' + text;
+  contentElement.textContent = text;
   messageElement.appendChild(contentElement);
 
   const messagesContainer = document.getElementById('messages');
