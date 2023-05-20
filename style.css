@@ -59,9 +59,12 @@ button {
 }
 
 input {
-  width: 14rem;
+  width: 15rem;
+  height: 2rem;
 }
 
 button {
-  width: 4.5rem !important;
+  width: 4.5rem;
+  height: 2rem;
+  border-radius: 3px;
 }
