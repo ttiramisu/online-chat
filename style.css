@@ -32,6 +32,13 @@ section {
   padding-top: 1.5rem;
 }
 
+.message {
+  border: 1px solid black;
+  padding-left: 5px;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+}
+
 #messages {
   max-height: 225px;
   overflow-y: auto;
