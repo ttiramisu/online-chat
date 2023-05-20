@@ -1,3 +1,6 @@
+// Retrieve user email from local storage
+const userEmail = localStorage.getItem('userEmail');
+
 const firebaseConfig = {
   apiKey: "AIzaSyCc1RCwcQLgHCIbdAYQw-iyD9oRm0TfknM",
   authDomain: "chat-test-88207.firebaseapp.com",
