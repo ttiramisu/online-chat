@@ -77,8 +77,8 @@ function hideEmail(email) {
   const username = email.slice(0, atIndex);
   const domain = email.slice(atIndex);
 
-  const hiddenUsername = '*'.repeat(username.length - 4) + username.slice(-4);
-  const hiddenDomain = domain.slice(0, 4) + '*'.repeat(domain.length - 4);
+  const hiddenUsername = username.slice(0, 4) + '*'.repeat(username.length - 8) + username.slice(-4); // Hide first 4 characters of username and last 4 characters of username
+  const hiddenDomain = domain.slice(0, 4) + '*'.repeat(domain.length - 8) + domain.slice(-4); // Hide first 4 characters of domain and last 4 characters of domain
 
   const hiddenEmail = hiddenUsername + hiddenDomain;
   return hiddenEmail;
