@@ -13,10 +13,14 @@ section {
   justify-content: center;
 }
 
-.column {
+.column-modify {
   flex-direction: column;
   width: 20rem;
   height: 300px;
+}
+
+.column {
+  flex-direction: column;
 }
 
 .border {
