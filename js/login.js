@@ -18,15 +18,20 @@ const auth = firebase.auth();
 
 const sendEmailVerification = () => {
   const user = auth.currentUser;
-  user.sendEmailVerification()
-    .then(() => {
-      // Email verification sent!
-      alert(`An email verification link has been sent to ${user.email}`);
-    })
-    .catch((err) => {
-      alert(err);
-    });
+  if (user) {
+    user.sendEmailVerification()
+      .then(() => {
+        // Email verification sent!
+        alert(`An email verification link has been sent to ${user.email}`);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  } else {
+    alert("No user is currently signed in.");
+  }
 };
+
 
 const register = () => {
   const email = document.getElementById('email').value;
