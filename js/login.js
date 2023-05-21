@@ -65,21 +65,7 @@ const login = () => {
     .then((userCredential) => {
       const user = userCredential.user;
       if (user && user.emailVerified) {
-        // Retrieve the username from the real-time database
-        db.collection('users').doc(user.uid).get()
-          .then((doc) => {
-            if (doc.exists) {
-              const username = doc.data().username;
-              localStorage.setItem('username', username); // Store the username in local storage
-              window.location.assign('chat.html');
-            } else {
-              alert('User does not exist.');
-            }
-          })
-          .catch((error) => {
-            console.error('Error retrieving username:', error);
-            alert('Error retrieving username. Please try again.');
-          });
+        window.location.assign('chat.html');
       } else if (user) {
         alert('Please verify your email before logging in.');
       } else {
