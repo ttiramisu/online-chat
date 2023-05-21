@@ -74,7 +74,7 @@ function displayMessage(message) {
 
   const messagesContainer = document.getElementById('messages');
   messagesContainer.appendChild(messageElement);
-  messagesContainer.appendChild(timeStamp);
+  messagesElement.appendChild(timeStamp);
 
   // Scroll to the bottom of the messages container
   messagesContainer.scrollTop = messagesContainer.scrollHeight;
