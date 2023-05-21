@@ -71,10 +71,10 @@ function displayMessage(message) {
   const contentElement = document.createElement('span');
   contentElement.textContent = hiddenEmail + ': ' + text;
   messageElement.appendChild(contentElement);
+  messageElement.appendChild(timeStamp);
 
   const messagesContainer = document.getElementById('messages');
   messagesContainer.appendChild(messageElement);
-  messagesElement.appendChild(timeStamp);
 
   // Scroll to the bottom of the messages container
   messagesContainer.scrollTop = messagesContainer.scrollHeight;
