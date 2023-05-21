@@ -78,6 +78,7 @@ const login = () => {
           })
           .catch((error) => {
             console.error('Error retrieving username:', error);
+            alert('Error retrieving username. Please try again.');
           });
       } else if (user) {
         alert('Please verify your email before logging in.');
