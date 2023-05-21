@@ -19,22 +19,12 @@ const auth = firebase.auth();
 const register = () => {
   const email = document.getElementById('email').value;
   const password = document.getElementById('pword').value;
-  const username = document.getElementById('username').value; // Get the username value
 
   auth.createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
       if (user) {
-        // Store the username in the real-time database
-        db.collection('users').doc(user.uid).set({
-          username: username
-        })
-          .then(() => {
-            sendEmailVerification(user);
-          })
-          .catch((error) => {
-            console.error('Error storing username:', error);
-          });
+        sendEmailVerification(user);
       } else {
         alert('User registration failed.');
       }
