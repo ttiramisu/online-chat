@@ -32,11 +32,14 @@ const sendButton = document.getElementById('sendButton');
 function sendMessage() {
   const messageText = messageInput.value.trim();
   if (messageText !== '') {
-    const userEmail = localStorage.getItem('userEmail'); // Retrieve user's email from local storage
+    const userEmail = localStorage.getItem('userEmail');
+    const currentTime = new Date().getTime();
+
     const newMessageRef = messagesRef.push();
     newMessageRef.set({
       text: messageText,
-      email: userEmail
+      email: userEmail,
+      timestamp: currentTime
     });
     messageInput.value = '';
   }
@@ -48,7 +51,7 @@ sendButton.addEventListener('click', sendMessage);
 // Add event listener to message input for Enter key press
 messageInput.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') {
-    event.preventDefault(); // Prevent the default form submission behavior
+    event.preventDefault();
     sendMessage();
   }
 });
@@ -56,9 +59,13 @@ messageInput.addEventListener('keydown', (event) => {
 // Display a message in the chat window
 function displayMessage(message) {
   const { text, email } = message;
-  const hiddenEmail = hideEmail(email); // Manipulate email string to hide certain parts
+  const hiddenEmail = hideEmail(email);
   const messageElement = document.createElement('div');
   messageElement.classList.add('message');
+
+  const timeStamp = document.createElement('p');
+  timeStamp.textContent = timestamp
+  timeStamp.classList.add('msg-time');
 
   const contentElement = document.createElement('span');
   contentElement.textContent = hiddenEmail + ': ' + text;
@@ -66,6 +73,7 @@ function displayMessage(message) {
 
   const messagesContainer = document.getElementById('messages');
   messagesContainer.appendChild(messageElement);
+  messagesContainer.appendChild(timeStamp);
 
   // Scroll to the bottom of the messages container
   messagesContainer.scrollTop = messagesContainer.scrollHeight;

@@ -60,10 +60,14 @@ section {
   word-wrap: break-word;
 }
 
-
 .msg-container {
   margin-bottom: 2rem;
-  width: 320px;
+  width: 360px;
+}
+
+.msg-time {
+  display: inline;
+  margin-left: 16rem;
 }
 
 button {
