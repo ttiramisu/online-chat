@@ -2,7 +2,7 @@ firebase.initializeApp(firebaseApp);
 
 firebase.auth().onAuthStateChanged(function (user) {
   if (!user) {
-    window.location.replace('https://fire-chatty.vercel.app/');
+    window.location.replace('login.html');
   } else {
     localStorage.setItem('userEmail', user.email);
   }
