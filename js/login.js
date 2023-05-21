@@ -19,12 +19,22 @@ const auth = firebase.auth();
 const register = () => {
   const email = document.getElementById('email').value;
   const password = document.getElementById('pword').value;
+  const username = document.getElementById('username').value; // Get the username value
 
   auth.createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
       if (user) {
-        sendEmailVerification(user);
+        // Store the username in the real-time database
+        db.collection('users').doc(user.uid).set({
+          username: username
+        })
+          .then(() => {
+            sendEmailVerification(user);
+          })
+          .catch((error) => {
+            console.error('Error storing username:', error);
+          });
       } else {
         alert('User registration failed.');
       }
@@ -55,7 +65,20 @@ const login = () => {
     .then((userCredential) => {
       const user = userCredential.user;
       if (user && user.emailVerified) {
-        window.location.assign('chat.html');
+        // Retrieve the username from the real-time database
+        db.collection('users').doc(user.uid).get()
+          .then((doc) => {
+            if (doc.exists) {
+              const username = doc.data().username;
+              localStorage.setItem('username', username); // Store the username in local storage
+              window.location.assign('chat.html');
+            } else {
+              alert('User does not exist.');
+            }
+          })
+          .catch((error) => {
+            console.error('Error retrieving username:', error);
+          });
       } else if (user) {
         alert('Please verify your email before logging in.');
       } else {

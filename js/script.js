@@ -32,13 +32,13 @@ const sendButton = document.getElementById('sendButton');
 function sendMessage() {
   const messageText = messageInput.value.trim();
   if (messageText !== '') {
-    const userEmail = localStorage.getItem('userEmail');
+    const username = localStorage.getItem('username'); // Get the username from local storage
     const currentTime = new Date().getTime();
 
     const newMessageRef = messagesRef.push();
     newMessageRef.set({
       text: messageText,
-      email: userEmail,
+      username: username, // Add the username to the message data
       timestamp: currentTime
     });
     messageInput.value = '';
@@ -58,8 +58,7 @@ messageInput.addEventListener('keydown', (event) => {
 
 // Display a message in the chat window
 function displayMessage(message) {
-  const { text, email, timestamp } = message;
-  const hiddenEmail = hideEmail(email);
+  const { text, username, timestamp } = message;
   const messageElement = document.createElement('div');
   messageElement.classList.add('message');
 
@@ -69,7 +68,7 @@ function displayMessage(message) {
   timeStamp.classList.add('msg-time');
 
   const contentElement = document.createElement('span');
-  contentElement.textContent = hiddenEmail + ': ' + text;
+  contentElement.textContent = username + ': ' + text; // Display username before the text
   messageElement.appendChild(contentElement);
   messageElement.appendChild(timeStamp);
 
@@ -87,14 +86,6 @@ function formatTime(timestamp) {
   const minutes = date.getMinutes().toString().padStart(2, '0');
   const timeString = `${hours}:${minutes}`;
   return timeString;
-}
-
-// Function to hide parts of the email
-function hideEmail(email) {
-  const atIndex = email.indexOf('@');
-  const hiddenEmail = email.slice(0, atIndex);
-
-  return hiddenEmail;
 }
 
 firebase.auth().onAuthStateChanged(function (user) {
