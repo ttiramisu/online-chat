@@ -58,13 +58,13 @@ messageInput.addEventListener('keydown', (event) => {
 
 // Display a message in the chat window
 function displayMessage(message) {
-  const { text, email } = message;
+  const { text, email, timestamp } = message; // Retrieve the timestamp from the message object
   const hiddenEmail = hideEmail(email);
   const messageElement = document.createElement('div');
   messageElement.classList.add('message');
 
   const timeStamp = document.createElement('p');
-  timeStamp.textContent = timestamp
+  timeStamp.textContent = timestamp; // Assign the timestamp value to the timestamp element
   timeStamp.classList.add('msg-time');
 
   const contentElement = document.createElement('span');
