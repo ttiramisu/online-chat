@@ -11,10 +11,6 @@ app = Flask(__name__, static_folder='static', static_url_path='')
 def index():
     return render_template('index.html')
 
-@app.route('/login')
-def login():
-    return render_template('index.html')
-
 @app.route('/register')
 def register():
     return render_template('register.html')
