@@ -99,6 +99,6 @@ function hideEmail(email) {
 
 firebase.auth().onAuthStateChanged(function (user) {
   if (!user) {
-    window.location.replace('index.html');
+    window.location.replace('https://fire-chatty.vercel.app/login');
   }
 });

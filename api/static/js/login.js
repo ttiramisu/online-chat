@@ -39,7 +39,7 @@ const sendEmailVerification = (user) => {
     .then(() => {
       // Email verification sent!
       alert('An email verification link has been sent to your email address. Please verify your email before logging in.');
-      window.location.assign('index.html');
+      window.location.assign('https://fire-chatty.vercel.app/login');
     })
     .catch((error) => {
       alert(error.message);
@@ -55,7 +55,7 @@ const login = () => {
     .then((userCredential) => {
       const user = userCredential.user;
       if (user && user.emailVerified) {
-        window.location.assign('chat.html');
+        window.location.assign('https://fire-chatty.vercel.app/chat');
       } else if (user) {
         alert('Please verify your email before logging in.');
       } else {
