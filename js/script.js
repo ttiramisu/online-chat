@@ -58,13 +58,14 @@ messageInput.addEventListener('keydown', (event) => {
 
 // Display a message in the chat window
 function displayMessage(message) {
-  const { text, email, timestamp } = message; // Retrieve the timestamp from the message object
+  const { text, email, timestamp } = message;
   const hiddenEmail = hideEmail(email);
   const messageElement = document.createElement('div');
   messageElement.classList.add('message');
 
   const timeStamp = document.createElement('p');
-  timeStamp.textContent = timestamp; // Assign the timestamp value to the timestamp element
+  const timeString = formatTime(timestamp);
+  timeStamp.textContent = timeString;
   timeStamp.classList.add('msg-time');
 
   const contentElement = document.createElement('span');
@@ -79,6 +80,15 @@ function displayMessage(message) {
   messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 
+// Function to format the timestamp to display only the time
+function formatTime(timestamp) {
+  const date = new Date(timestamp);
+  const hours = date.getHours().toString().padStart(2, '0');
+  const minutes = date.getMinutes().toString().padStart(2, '0');
+  const timeString = `${hours}:${minutes}`;
+  return timeString;
+}
+
 // Function to hide parts of the email
 function hideEmail(email) {
   const atIndex = email.indexOf('@');
@@ -86,7 +96,6 @@ function hideEmail(email) {
 
   return hiddenEmail;
 }
-
 
 firebase.auth().onAuthStateChanged(function (user) {
   if (!user) {
