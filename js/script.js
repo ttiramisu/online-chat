@@ -56,7 +56,6 @@ messageInput.addEventListener('keydown', (event) => {
   }
 });
 
-// Display a message in the chat window
 function displayMessage(message) {
   const { text, email, timestamp } = message;
   const hiddenEmail = hideEmail(email);
@@ -69,7 +68,7 @@ function displayMessage(message) {
   timeStamp.classList.add('msg-time');
 
   const contentElement = document.createElement('span');
-  contentElement.textContent = hiddenEmail + ': ' + text;
+  contentElement.innerHTML = marked(hiddenEmail + ': ' + text);
   messageElement.appendChild(contentElement);
   messageElement.appendChild(timeStamp);
 
