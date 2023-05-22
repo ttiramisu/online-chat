@@ -55,6 +55,7 @@ const login = () => {
       const user = userCredential.user;
       if (user && user.emailVerified) {
         window.location.assign('chat.html');
+        localStorage.setItem('userEmail', email);
       } else if (user) {
         alert('Please verify your email before logging in.');
       } else {
