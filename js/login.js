@@ -19,11 +19,14 @@ const auth = firebase.auth();
 const register = () => {
   const email = document.getElementById('email').value;
   const password = document.getElementById('pword').value;
+  const username = document.getElementById('username').value;
 
   auth.createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
       if (user) {
+        // Store username in local storage
+        localStorage.setItem('username', username);
         sendEmailVerification(user);
       } else {
         alert('User registration failed.');
@@ -49,12 +52,15 @@ const sendEmailVerification = (user) => {
 const login = () => {
   const email = document.getElementById('email').value;
   const password = document.getElementById('pword').value;
-  localStorage.setItem('userEmail', email);
 
   auth.signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
       if (user && user.emailVerified) {
+        // Retrieve username from local storage
+        const username = localStorage.getItem('username');
+        // Use the username as needed
+        console.log('Logged in as:', username);
         window.location.assign('chat.html');
       } else if (user) {
         alert('Please verify your email before logging in.');
