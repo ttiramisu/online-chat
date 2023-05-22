@@ -1,4 +1,5 @@
-const username = localStorage.getItem('username');
+// Retrieve user email from local storage
+const userEmail = localStorage.getItem('userEmail');
 
 const firebaseConfig = {
   apiKey: "AIzaSyCc1RCwcQLgHCIbdAYQw-iyD9oRm0TfknM",
@@ -68,7 +69,7 @@ function displayMessage(message) {
   timeStamp.classList.add('msg-time');
 
   const contentElement = document.createElement('span');
-  contentElement.textContent = username + ': ' + text;
+  contentElement.textContent = hiddenEmail + ': ' + text;
   messageElement.appendChild(contentElement);
   messageElement.appendChild(timeStamp);
 
