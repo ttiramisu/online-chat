@@ -49,8 +49,6 @@ const sendEmailVerification = (user) => {
 const login = () => {
   const email = document.getElementById('email').value;
   const password = document.getElementById('pword').value;
-  const username = document.getElementById('username').value;
-  localStorage.setItem('username', username);
 
   auth.signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
