@@ -100,10 +100,12 @@ function hideEmail(email) {
 firebase.auth().onAuthStateChanged(function (user) {
   if (!user) {
     window.location.replace('index.html');
+  } else if (user) {
+    const userEmail = localStorage.getItem('userEmail');
+    const hiddenEmail = hideEmail(userEmail);
+    const loggedInMessage = document.getElementById('log-in-as');
+    loggedInMessage.textContent = `You are logged in as ${hiddenEmail}`;
+  } else {
+    window.location.replace('index.html');
   }
 });
-
-const { email } = displayMsgPrt;
-const displayEmail = hideEmail(email);
-const logedInAs = document.getElementById('log-in-as');
-logedInAs.textContent = `You are loged in as ${hiddenEmail}`;
