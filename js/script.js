@@ -14,8 +14,10 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 
-// Get a reference to the database service
+
+// Get a reference to Firebase services
 const database = firebase.database();
+const auth = firebase.auth();
 
 const messagesRef = database.ref('messages');
 
