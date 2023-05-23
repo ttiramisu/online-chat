@@ -103,6 +103,7 @@ firebase.auth().onAuthStateChanged(function (user) {
   }
 });
 
+const { email } = displayMsgPrt;
 const displayEmail = hideEmail(email);
 const logedInAs = document.getElementById('log-in-as');
 logedInAs.textContent = `You are loged in as ${hiddenEmail}`;
