@@ -97,6 +97,20 @@ function hideEmail(email) {
   return hiddenEmail;
 }
 
+const logout = () => {
+  auth.signOut()
+    .then(() => {
+      localStorage.removeItem('userEmail');
+      window.location.assign('index.html');
+    })
+    .catch((error) => {
+      alert(error.message);
+    });
+};
+
+const logoutButton = document.getElementById('logoutButton');
+logoutButton.addEventListener('click', logout);
+
 firebase.auth().onAuthStateChanged(function (user) {
   if (!user) {
     window.location.replace('index.html');

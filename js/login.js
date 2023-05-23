@@ -67,7 +67,7 @@ const login = () => {
     });
 };
 
-const showPwd = function () {
+const showPwd = () => {
   showpwd = document.getElementById("pword");
   if (showpwd.type === "password") {
     showpwd.type = "text";
