@@ -98,3 +98,7 @@ button {
 .logout-link:hover {
   text-decoration: underline;
 }
+
+#log-in-as {
+  cursor: default;
+}
