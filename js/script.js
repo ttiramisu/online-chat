@@ -63,6 +63,9 @@ function displayMessage(message) {
   const messageElement = document.createElement('div');
   messageElement.classList.add('message');
 
+  const logedInAs = document.getElementById('log-in-as');
+  logedInAs.textContent = `You are loged in as ${hiddenEmail}`;
+
   const timeStamp = document.createElement('p');
   const timeString = formatTime(timestamp);
   timeStamp.textContent = timeString;
@@ -102,6 +105,3 @@ firebase.auth().onAuthStateChanged(function (user) {
     window.location.replace('index.html');
   }
 });
-
-const logedInAs = document.getElementById('log-in-as');
-logedInAs.textContent = `You are loged in as ${hiddenEmail}`;
