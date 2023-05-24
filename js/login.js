@@ -1,5 +1,6 @@
-// let one = one
 let showpwd;
+
+console.log(window.api);
 
 const firebaseApp = {
   apiKey: "AIzaSyCc1RCwcQLgHCIbdAYQw-iyD9oRm0TfknM",
