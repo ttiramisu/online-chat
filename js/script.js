@@ -1,5 +1,3 @@
-console.log(window.api);
-
 // Retrieve user email from local storage
 const userEmail = localStorage.getItem('userEmail');
 
@@ -16,6 +14,10 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 
+app.get('/', (req, res) => {
+  const apiKey = process.env.api_key;
+  res.render('index', { apiKey });
+});
 
 // Get a reference to Firebase services
 const database = firebase.database();

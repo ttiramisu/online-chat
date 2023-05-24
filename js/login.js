@@ -1,7 +1,5 @@
 let showpwd;
 
-console.log(window.api);
-
 const firebaseApp = {
   apiKey: window.api,
   authDomain: "chat-test-88207.firebaseapp.com",
@@ -12,7 +10,12 @@ const firebaseApp = {
   appId: "1:475093710040:web:13a5dcf2b0b8aae81d53ad"
 };
 
-firebase.initializeApp(firebaseApp);
+const app = firebase.initializeApp(firebaseApp);
+
+app.get('/', (req, res) => {
+  const apiKey = process.env.API_KEY;
+  res.render('index', { apiKey });
+});
 
 const db = firebase.firestore();
 const auth = firebase.auth();
