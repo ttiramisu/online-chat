@@ -3,7 +3,7 @@ let showpwd;
 console.log(window.api);
 
 const firebaseApp = {
-  apiKey: "AIzaSyCc1RCwcQLgHCIbdAYQw-iyD9oRm0TfknM",
+  apiKey: window.api,
   authDomain: "chat-test-88207.firebaseapp.com",
   databaseURL: "https://chat-test-88207-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "chat-test-88207",
