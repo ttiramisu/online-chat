@@ -14,11 +14,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 
-app.get('/', (req, res) => {
-  const apiKey = process.env.api_key;
-  res.render('index', { apiKey });
-});
-
 // Get a reference to Firebase services
 const database = firebase.database();
 const auth = firebase.auth();
