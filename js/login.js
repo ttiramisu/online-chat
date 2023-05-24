@@ -1,7 +1,7 @@
 let showpwd;
 
 const firebaseApp = {
-  apiKey: window.api,
+  apiKey: 'AIzaSyCc1RCwcQLgHCIbdAYQw-iyD9oRm0TfknM',
   authDomain: "chat-test-88207.firebaseapp.com",
   databaseURL: "https://chat-test-88207-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "chat-test-88207",
@@ -13,7 +13,7 @@ const firebaseApp = {
 const app = firebase.initializeApp(firebaseApp);
 
 app.get('/', (req, res) => {
-  const apiKey = process.env.API_KEY;
+  const apiKey = process.env.api_key;
   res.render('index', { apiKey });
 });
 

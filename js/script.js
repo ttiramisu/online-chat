@@ -2,7 +2,7 @@
 const userEmail = localStorage.getItem('userEmail');
 
 const firebaseConfig = {
-  apiKey: window.api,
+  apiKey: 'AIzaSyCc1RCwcQLgHCIbdAYQw-iyD9oRm0TfknM',
   authDomain: "chat-test-88207.firebaseapp.com",
   databaseURL: "https://chat-test-88207-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "chat-test-88207",
