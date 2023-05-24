@@ -10,13 +10,7 @@ const firebaseApp = {
   appId: "1:475093710040:web:13a5dcf2b0b8aae81d53ad"
 };
 
-const app = firebase.initializeApp(firebaseApp);
-
-app.get('/', (req, res) => {
-  const apiKey = process.env.api_key;
-  res.render('index', { apiKey });
-});
-
+firebase.initializeApp(firebaseApp);
 const db = firebase.firestore();
 const auth = firebase.auth();
 
