@@ -1,4 +1,5 @@
 let showpwd;
+let ipAddress;
 
 const firebaseApp = {
   apiKey: 'AIzaSyCc1RCwcQLgHCIbdAYQw-iyD9oRm0TfknM',
@@ -67,7 +68,7 @@ const getIpAddress = () => {
   fetch('https://api.ipify.org?format=json')
     .then(response => response.json())
     .then(data => {
-      const ipAddress = data.ip;
+      ipAddress = data.ip;
       // Use the ipAddress as needed
       console.log('IP Address: ' + ipAddress);
     })
@@ -76,21 +77,49 @@ const getIpAddress = () => {
     });
 };
 
-// Check if the IP address has reached the registration limit
+// New database
+const storeRegistrationInfo = (ipAddress, registrationTime) => {
+  const registrationsCollection = firebase.firestore().collection('registrations');
+
+  // Create a new document with auto-generated ID
+  registrationsCollection.add({
+    ipAddress: ipAddress,
+    registrationTime: registrationTime
+  })
+    .then((docRef) => {
+      console.log('Registration information stored');
+    })
+    .catch((error) => {
+      console.error('Error storing registration information:', error);
+    });
+};
+
 const checkRegistrationLimit = (email) => {
-  const ipAddress = getIpAddress(); // Implement your own logic to retrieve the IP address
-  const maxRegistrationPerIpAddress = 1; // Set the maximum allowed registrations per IP address
+  // Retrieve the maximum allowed registrations per IP address from a configuration or constant
+  const maxRegistrationPerIpAddress = 3;
 
-  // Implement your own logic to check the registration count for the given IP address
-  // You can use a database or any other storage mechanism to keep track of the registration counts per IP address
+  return getRegistrationCountByIpAddress(ipAddress)
+    .then((registrationCount) => {
+      return registrationCount >= maxRegistrationPerIpAddress;
+    })
+    .catch((error) => {
+      console.error('Error checking registration limit:', error);
+      return false; // Return false in case of an error
+    });
+};
 
-  // Example code to check the registration count
-  const registrationCount = getRegistrationCountByIpAddress(ipAddress); // Implement this function
-  if (registrationCount >= maxRegistrationPerIpAddress) {
-    return true; // Registration limit reached
-  }
+// Retrieve registration count by IP address from Firestore
+const getRegistrationCountByIpAddress = (ipAddress) => {
+  const registrationsCollection = firebase.firestore().collection('registrations');
 
-  return false; // Registration limit not reached
+  return registrationsCollection.where('ipAddress', '==', ipAddress).get()
+    .then((querySnapshot) => {
+      return querySnapshot.size; // Return the count of matching documents
+    })
+    .catch((error) => {
+      console.error('Error retrieving registration count:', error);
+      return 0; // Return 0 in case of an error
+    });
 };
 
 const register = () => {
