@@ -25,9 +25,9 @@ const customValidationRules = [
       "tempmail.org",
       'mevori.com',
       'mailtouiq.com',
-      '.xyz',
       '.website',
-      'mailtouiq.com'
+      'mailtouiq.com',
+      'tcwlx.com'
     ];
     return suspiciousDomains.includes(domain);
   },
