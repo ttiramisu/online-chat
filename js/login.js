@@ -27,7 +27,14 @@ const customValidationRules = [
       'mailtouiq.com',
       '.website',
       'mailtouiq.com',
-      'tcwlx.com'
+      'tcwlx.com',
+      'favilu.com',
+      'e4ward.com',
+      'sharklasers.com',
+      'guerrilla',
+      'pokemail.net',
+      'grr.la',
+      'spam4.me'
     ];
     return suspiciousDomains.includes(domain);
   },
