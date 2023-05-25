@@ -14,9 +14,82 @@ firebase.initializeApp(firebaseApp);
 const db = firebase.firestore();
 const auth = firebase.auth();
 
+// Custom validation rules
+const customValidationRules = [
+  // Check for suspicious email domains
+  (email) => {
+    const domain = email.split('@')[1];
+    const suspiciousDomains = [
+      "example.com",
+      "spamdomain.com",
+      "tempmail.org",
+      'mevori.com',
+      'mailtouiq.com',
+      '.xyz',
+      '.website',
+      'mailtouiq.com'
+    ];
+    return suspiciousDomains.includes(domain);
+  },
+];
+
+// Registration validation
+const validateRegistration = (email, password) => {
+  const errors = [];
+
+  // Email validation
+  if (!isValidEmail(email)) {
+    errors.push("Please enter a valid email address.");
+  }
+
+  // Custom validation rules
+  if (customValidationRules.some((rule) => rule(email))) {
+    errors.push("Email address is not allowed.");
+  }
+
+  return errors;
+};
+
+// Validate email address format
+const isValidEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
+
+// Check if the IP address has reached the registration limit
+const checkRegistrationLimit = (email) => {
+  const ipAddress = getIpAddress(); // Implement your own logic to retrieve the IP address
+  const maxRegistrationPerIpAddress = 1; // Set the maximum allowed registrations per IP address
+
+  // Implement your own logic to check the registration count for the given IP address
+  // You can use a database or any other storage mechanism to keep track of the registration counts per IP address
+
+  // Example code to check the registration count
+  const registrationCount = getRegistrationCountByIpAddress(ipAddress); // Implement this function
+  if (registrationCount >= maxRegistrationPerIpAddress) {
+    return true; // Registration limit reached
+  }
+
+  return false; // Registration limit not reached
+};
+
 const register = () => {
   const email = document.getElementById('email').value;
   const password = document.getElementById('pword').value;
+
+  const validationErrors = validateRegistration(email, password);
+  if (validationErrors.length > 0) {
+    // Display validation errors to the user
+    validationErrors.forEach((error) => {
+      alert("Error: " + error);
+    });
+    return;
+  }
+
+  if (checkRegistrationLimit(email)) {
+    alert("Registration limit reached for your IP address. Please try again later.");
+    return;
+  }
 
   auth.createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
@@ -66,10 +139,6 @@ const login = () => {
 };
 
 const showPwd = () => {
-  showpwd = document.getElementById("pword");
-  if (showpwd.type === "password") {
-    showpwd.type = "text";
-  } else {
-    showpwd.type = "password";
-  }
+  const passwordField = document.getElementById("pword");
+  passwordField.type = (passwordField.type === "password") ? "text" : "password";
 };
