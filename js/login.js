@@ -63,6 +63,19 @@ const isValidEmail = (email) => {
   return emailRegex.test(email);
 };
 
+const getIpAddress = () => {
+  fetch('https://api.ipify.org?format=json')
+    .then(response => response.json())
+    .then(data => {
+      const ipAddress = data.ip;
+      // Use the ipAddress as needed
+      console.log('IP Address: ' + ipAddress);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+};
+
 // Check if the IP address has reached the registration limit
 const checkRegistrationLimit = (email) => {
   const ipAddress = getIpAddress(); // Implement your own logic to retrieve the IP address
