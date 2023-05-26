@@ -28,6 +28,7 @@ messagesRef.on('child_added', (snapshot) => {
 
 const messageInput = document.getElementById('messageInput');
 const sendButton = document.getElementById('sendButton');
+const messageSound = document.getElementById('messageSound');
 
 // Send a message
 function sendMessage() {
@@ -43,6 +44,7 @@ function sendMessage() {
       timestamp: currentTime
     });
     messageInput.value = '';
+    messageSound.play();
   }
 }
 
