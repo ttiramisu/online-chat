@@ -135,23 +135,28 @@ const register = () => {
     return;
   }
 
-  if (checkRegistrationLimit(email)) {
-    alert("Registration limit reached for your IP address. Please try again later.");
-    return;
-  }
+  getIpAddress(); // Retrieve the IP address
 
-  auth.createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      if (user) {
-        sendEmailVerification(user);
-      } else {
-        alert('User registration failed.');
-      }
-    })
-    .catch((error) => {
-      alert(error.message);
-    });
+  // Wait for the IP address retrieval before checking the registration limit
+  setTimeout(() => {
+    if (checkRegistrationLimit(email)) {
+      alert("Registration limit reached for your IP address. Please try again later.");
+      return;
+    }
+
+    auth.createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        if (user) {
+          sendEmailVerification(user);
+        } else {
+          alert('User registration failed.');
+        }
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  }, 1000); // Adjust the timeout duration as needed
 };
 
 const sendEmailVerification = (user) => {
