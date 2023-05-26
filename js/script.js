@@ -44,7 +44,6 @@ function sendMessage() {
       timestamp: currentTime
     });
     messageInput.value = '';
-    messageSound.play();
   }
 }
 
@@ -81,6 +80,7 @@ function displayMessage(message) {
 
   // Scroll to the bottom of the messages container
   messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  messageSound.play();
 }
 
 // Function to format the timestamp to display only the time
