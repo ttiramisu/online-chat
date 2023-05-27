@@ -15,148 +15,148 @@ firebase.initializeApp(firebaseApp);
 const db = firebase.firestore();
 const auth = firebase.auth();
 
-// Custom validation rules
-const customValidationRules = [
-  // Check for suspicious email domains
-  (email) => {
-    const domain = email.split('@')[1];
-    const suspiciousDomains = [
-      "example.com",
-      "spamdomain.com",
-      "tempmail.org",
-      'mevori.com',
-      'mailtouiq.com',
-      '.website',
-      'mailtouiq.com',
-      'tcwlx.com',
-      'favilu.com',
-      'e4ward.com',
-      'sharklasers.com',
-      'guerrilla',
-      'pokemail.net',
-      'grr.la',
-      'spam4.me'
-    ];
-    return suspiciousDomains.includes(domain);
-  },
-];
+// // Custom validation rules
+// const customValidationRules = [
+//   // Check for suspicious email domains
+//   (email) => {
+//     const domain = email.split('@')[1];
+//     const suspiciousDomains = [
+//       "example.com",
+//       "spamdomain.com",
+//       "tempmail.org",
+//       'mevori.com',
+//       'mailtouiq.com',
+//       '.website',
+//       'mailtouiq.com',
+//       'tcwlx.com',
+//       'favilu.com',
+//       'e4ward.com',
+//       'sharklasers.com',
+//       'guerrilla',
+//       'pokemail.net',
+//       'grr.la',
+//       'spam4.me'
+//     ];
+//     return suspiciousDomains.includes(domain);
+//   },
+// ];
 
-// Registration validation
-const validateRegistration = (email, password) => {
-  const errors = [];
+// // Registration validation
+// const validateRegistration = (email, password) => {
+//   const errors = [];
 
-  // Email validation
-  if (!isValidEmail(email)) {
-    errors.push("Please enter a valid email address.");
-  }
+//   // Email validation
+//   if (!isValidEmail(email)) {
+//     errors.push("Please enter a valid email address.");
+//   }
 
-  // Custom validation rules
-  if (customValidationRules.some((rule) => rule(email))) {
-    errors.push("Email address is not allowed.");
-  }
+//   // Custom validation rules
+//   if (customValidationRules.some((rule) => rule(email))) {
+//     errors.push("Email address is not allowed.");
+//   }
 
-  return errors;
-};
+//   return errors;
+// };
 
-// Validate email address format
-const isValidEmail = (email) => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-};
+// // Validate email address format
+// const isValidEmail = (email) => {
+//   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+//   return emailRegex.test(email);
+// };
 
-const getIpAddress = () => {
-  fetch('https://api.ipify.org?format=json')
-    .then(response => response.json())
-    .then(data => {
-      ipAddress = data.ip;
-      // Use the ipAddress as needed
-      console.log('IP Address: ' + ipAddress);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-};
+// const getIpAddress = () => {
+//   fetch('https://api.ipify.org?format=json')
+//     .then(response => response.json())
+//     .then(data => {
+//       ipAddress = data.ip;
+//       // Use the ipAddress as needed
+//       console.log('IP Address: ' + ipAddress);
+//     })
+//     .catch(error => {
+//       console.error('Error:', error);
+//     });
+// };
 
-// New database
-const storeRegistrationInfo = (ipAddress, registrationTime) => {
-  const registrationsCollection = firebase.firestore().collection('registrations');
+// // New database
+// const storeRegistrationInfo = (ipAddress, registrationTime) => {
+//   const registrationsCollection = firebase.firestore().collection('registrations');
 
-  // Create a new document with auto-generated ID
-  registrationsCollection.add({
-    ipAddress: ipAddress,
-    registrationTime: registrationTime
-  })
-    .then((docRef) => {
-      console.log('Registration information stored');
-    })
-    .catch((error) => {
-      console.error('Error storing registration information:', error);
-    });
-};
+//   // Create a new document with auto-generated ID
+//   registrationsCollection.add({
+//     ipAddress: ipAddress,
+//     registrationTime: registrationTime
+//   })
+//     .then((docRef) => {
+//       console.log('Registration information stored');
+//     })
+//     .catch((error) => {
+//       console.error('Error storing registration information:', error);
+//     });
+// };
 
-const checkRegistrationLimit = (email) => {
-  // Retrieve the maximum allowed registrations per IP address from a configuration or constant
-  const maxRegistrationPerIpAddress = 3;
+// const checkRegistrationLimit = (email) => {
+//   // Retrieve the maximum allowed registrations per IP address from a configuration or constant
+//   const maxRegistrationPerIpAddress = 3;
 
-  return getRegistrationCountByIpAddress(ipAddress)
-    .then((registrationCount) => {
-      return registrationCount >= maxRegistrationPerIpAddress;
-    })
-    .catch((error) => {
-      console.error('Error checking registration limit:', error);
-      return false; // Return false in case of an error
-    });
-};
+//   return getRegistrationCountByIpAddress(ipAddress)
+//     .then((registrationCount) => {
+//       return registrationCount >= maxRegistrationPerIpAddress;
+//     })
+//     .catch((error) => {
+//       console.error('Error checking registration limit:', error);
+//       return false; // Return false in case of an error
+//     });
+// };
 
-// Retrieve registration count by IP address from Firestore
-const getRegistrationCountByIpAddress = (ipAddress) => {
-  const registrationsCollection = firebase.firestore().collection('registrations');
+// // Retrieve registration count by IP address from Firestore
+// const getRegistrationCountByIpAddress = (ipAddress) => {
+//   const registrationsCollection = firebase.firestore().collection('registrations');
 
-  return registrationsCollection.where('ipAddress', '==', ipAddress).get()
-    .then((querySnapshot) => {
-      return querySnapshot.size; // Return the count of matching documents
-    })
-    .catch((error) => {
-      console.error('Error retrieving registration count:', error);
-      return 0; // Return 0 in case of an error
-    });
-};
+//   return registrationsCollection.where('ipAddress', '==', ipAddress).get()
+//     .then((querySnapshot) => {
+//       return querySnapshot.size; // Return the count of matching documents
+//     })
+//     .catch((error) => {
+//       console.error('Error retrieving registration count:', error);
+//       return 0; // Return 0 in case of an error
+//     });
+// };
 
 const register = () => {
   const email = document.getElementById('email').value;
   const password = document.getElementById('pword').value;
 
-  const validationErrors = validateRegistration(email, password);
-  if (validationErrors.length > 0) {
-    // Display validation errors to the user
-    validationErrors.forEach((error) => {
-      alert("Error: " + error);
+  // const validationErrors = validateRegistration(email, password);
+  // if (validationErrors.length > 0) {
+  //   // Display validation errors to the user
+  //   validationErrors.forEach((error) => {
+  //     alert("Error: " + error);
+  //   });
+  //   return;
+  // }
+
+  // getIpAddress(); // Retrieve the IP address
+
+  // // Wait for the IP address retrieval before checking the registration limit
+  // setTimeout(() => {
+  //   if (checkRegistrationLimit(email)) {
+  //     alert("Registration limit reached for your IP address. Please try again later.");
+  //     return;
+  //   }
+
+  auth.createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      if (user) {
+        sendEmailVerification(user);
+      } else {
+        alert('User registration failed.');
+      }
     });
-    return;
-  }
-
-  getIpAddress(); // Retrieve the IP address
-
-  // Wait for the IP address retrieval before checking the registration limit
-  setTimeout(() => {
-    if (checkRegistrationLimit(email)) {
-      alert("Registration limit reached for your IP address. Please try again later.");
-      return;
-    }
-
-    auth.createUserWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        if (user) {
-          sendEmailVerification(user);
-        } else {
-          alert('User registration failed.');
-        }
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
-  }, 1000); // Adjust the timeout duration as needed
+  //     .catch((error) => {
+  //       alert(error.message);
+  //     });
+  // }, 1000); // Adjust the timeout duration as needed
 };
 
 const sendEmailVerification = (user) => {
