@@ -28,7 +28,6 @@ messagesRef.on('child_added', (snapshot) => {
 
 const messageInput = document.getElementById('messageInput');
 const sendButton = document.getElementById('sendButton');
-const messageSound = document.getElementById('messageSound');
 
 // Send a message
 function sendMessage() {
@@ -80,7 +79,6 @@ function displayMessage(message) {
 
   // Scroll to the bottom of the messages container
   messagesContainer.scrollTop = messagesContainer.scrollHeight;
-  messageSound.play();
 }
 
 // Function to format the timestamp to display only the time
